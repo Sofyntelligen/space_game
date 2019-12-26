@@ -45,7 +45,7 @@ public class JuegoEspacio extends JPanel{
             obj.drawString("Record: "+juego.Record(),10,15);
         }
         if(juego.FinJuego()){
-            TextoPintado("GAME OVER",titulos_fondo,obj,-25);
+            TextoPintado("Juego Terminado",titulos_fondo,obj,-25);
             TextoPintado("Record Final: "+juego.Record(),subtitulos_fondo,obj,10);
         }else 
             if(juego.JuegoPausado()){

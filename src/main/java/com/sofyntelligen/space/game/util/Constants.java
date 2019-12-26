@@ -6,5 +6,6 @@ public class Constants {
         super();
     }
 
+    public static final int NUMBER_OF_SIDES = 5;
 
 }

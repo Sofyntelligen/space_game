@@ -16,17 +16,17 @@ public class FiguraPentagono extends InicioMovimientos {
     private static final double minima_distancia = 200.0;
     private static final double maxima_distancia = JuegoEspacio.tamaño_espacio / 2.0;
     private static final double varaicion_distancia = maxima_distancia - minima_distancia;
-    private FiguraPentagonoMedidas tamaño;
+    private PentagonSizes tamaño;
     private double velucidad_ritacion;
 
     public FiguraPentagono(Random a) {
-        super(CalculoPosicion(a), CalculoVelocidad(a), FiguraPentagonoMedidas.Large.radio, FiguraPentagonoMedidas.Large.iniciar_valor);
+        super(CalculoPosicion(a), CalculoVelocidad(a), PentagonSizes.LARGE.getRadius(), PentagonSizes.LARGE.getInitValue());
         this.velucidad_ritacion = -minima_rotacion + (a.nextDouble() * variacion_rotacion);
-        this.tamaño = FiguraPentagonoMedidas.Large;
+        this.tamaño = PentagonSizes.LARGE;
     }
 
-    public FiguraPentagono(FiguraPentagono a, FiguraPentagonoMedidas b, Random c) {
-        super(new MedidasVectores(a.posicion), CalculoVelocidad(c), b.radio, b.iniciar_valor);
+    public FiguraPentagono(FiguraPentagono a, PentagonSizes b, Random c) {
+        super(new MedidasVectores(a.posicion), CalculoVelocidad(c), b.getRadius(), b.getInitValue());
         this.velucidad_ritacion = minima_rotacion + (c.nextDouble() * variacion_rotacion);
         this.tamaño = b;
         for (int i = 0; i < 10; i++) {
@@ -51,14 +51,14 @@ public class FiguraPentagono extends InicioMovimientos {
 
     @Override
     public void draw(Graphics2D a, Juego b) {
-        a.drawPolygon(tamaño.poligono);
+        a.drawPolygon(tamaño.getPolygon());
     }
 
     @Override
     public void handleCollision(Juego a, InicioMovimientos b) {
         if (b.getClass() != FiguraPentagono.class) {
-            if (tamaño != FiguraPentagonoMedidas.Small) {
-                FiguraPentagonoMedidas spawnSize = FiguraPentagonoMedidas.values()[tamaño.ordinal() - 1];
+            if (tamaño != PentagonSizes.SMALL) {
+                PentagonSizes spawnSize = PentagonSizes.values()[tamaño.ordinal() - 1];
                 for (int i = 0; i < 2; i++) {
                     a.RegistroMovimientos(new FiguraPentagono(this, spawnSize, a.JuegoAzar()));
                 }
