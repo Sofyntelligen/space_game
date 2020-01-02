@@ -14,13 +14,13 @@ public enum PentagonSizes {
     private final double radius;
     private final int initValue;
 
-    PentagonSizes(double radio, int a) {
-        this.polygon = createPolygon(radio);
-        this.radius = radio + 1.0;
+    PentagonSizes(double radius, int a) {
+        this.polygon = createPolygon(radius);
+        this.radius = radius + 1.0;
         this.initValue = a;
     }
 
-    private Polygon createPolygon(double radio) {
+    private Polygon createPolygon(double radius) {
 
         int[] x = new int[Constants.NUMBER_OF_SIDES];
         int[] y = new int[Constants.NUMBER_OF_SIDES];
@@ -28,8 +28,8 @@ public enum PentagonSizes {
         double angulo = (2 * Math.PI / Constants.NUMBER_OF_SIDES);
 
         for (int i = 0; i < Constants.NUMBER_OF_SIDES; i++) {
-            x[i] = (int) (radio * Math.sin(i * angulo));
-            y[i] = (int) (radio * Math.cos(i * angulo));
+            x[i] = (int) (radius * Math.sin(i * angulo));
+            y[i] = (int) (radius * Math.cos(i * angulo));
         }
 
         return new Polygon(x, y, Constants.NUMBER_OF_SIDES);
